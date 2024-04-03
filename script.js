@@ -103,7 +103,6 @@ function startGame(){
     if (whoStarts == 1){
         playerTurn = true;
     }else{
-        turnCount++;
         infoMessage = "Opponent starts the game!"
         setTimeout(placeO, 1000);
     }
@@ -139,13 +138,13 @@ function placeX(gridNumber) {
     else if (gridNumber == '8' && grid[gridNumber].isO == false) {
         grid[8].isX = true;
     }
+    turnCount++;
     playerTurn = false;
     infoMessage = "Opponent plays..."
     setTimeout(() => {
         placeO();
     }, 500);
 
-    turnCount++;
     checkGameStatus();
     updateView();
 }
@@ -245,10 +244,12 @@ function placeO() {
             grid[randomNumber].isO = true;
         } else {
             placeO();
+            return;
         }
     }
     playerTurn = true;
     infoMessage = "Your turn!"
+    turnCount++;
     checkGameStatus();
     updateView();
 }
@@ -257,28 +258,23 @@ function checkGameStatus() {
     if (grid[0].isX && grid[1].isX && grid[2].isX ||
         grid[3].isX && grid[4].isX && grid[5].isX ||
         grid[6].isX && grid[7].isX && grid[8].isX ||
-
         grid[0].isX && grid[3].isX && grid[6].isX ||
         grid[1].isX && grid[4].isX && grid[7].isX ||
         grid[2].isX && grid[5].isX && grid[8].isX ||
-
         grid[0].isX && grid[4].isX && grid[8].isX ||
         grid[2].isX && grid[4].isX && grid[6].isX) {
         infoMessage = "You win!"
         xHasWon = true;
-        resultClass = 'winDisplay'
+        resultClass = 'winDisplay';
         setInterval(() => {
             displayWin();
         }, 300);
-    }
-    else if (grid[0].isO && grid[1].isO && grid[2].isO ||
+    } else if (grid[0].isO && grid[1].isO && grid[2].isO ||
         grid[3].isO && grid[4].isO && grid[5].isO ||
         grid[6].isO && grid[7].isO && grid[8].isO ||
-
         grid[0].isO && grid[3].isO && grid[6].isO ||
         grid[1].isO && grid[4].isO && grid[7].isO ||
         grid[2].isO && grid[5].isO && grid[8].isO ||
-
         grid[0].isO && grid[4].isO && grid[8].isO ||
         grid[2].isO && grid[4].isO && grid[6].isO) {
         infoMessage = "You lose!"
@@ -287,12 +283,10 @@ function checkGameStatus() {
         setInterval(() => {
             displayLoss();
         }, 300);
-    } else if (turnCount == 5 && !xHasWon && !oHasWon) {
-        for(let i = 0; i < grid.length; i++){
-            setTimeout(grid[i].isO = true, 500);
-        }
-        infoMessage = "It's a draw!"
+    } else if (turnCount == 9 && !xHasWon && !oHasWon) {
+        infoMessage = "It's a draw!";
         draw = true;
+        updateView();
     }
 }
 
