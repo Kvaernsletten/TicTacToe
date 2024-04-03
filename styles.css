@@ -1,0 +1,61 @@
+_{
+    background-color: rgba(106, 81, 117, 0.719);
+    border: 5px solid rgb(211, 134, 45);
+    background-color: rgb(43, 29, 48);
+}
+
+html{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(43, 29, 48);
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+    font-size: 200%;
+    color: rgb(211, 182, 16);
+}
+
+.gridContainer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 2px solid rgb(211, 134, 45);
+    height: 462px;
+    width: 462px;
+}
+
+.gridBox{
+    height: 150px;
+    width: 150px;
+    background-color: rgba(106, 81, 117, 0.719);
+    border: 2px solid rgb(211, 134, 45);
+}
+
+.infoScreen{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 456px;
+    color: rgb(211, 134, 45);;
+    background-color: rgb(62, 39, 71);
+    border: 5px solid rgb(211, 134, 45);
+    border-top: none;
+    font-size: 150%;
+    font-style: bold;
+    font-weight: 600;
+}
+
+.winDisplay{
+    background-color: rgb(38, 133, 38);
+}
+.loseDisplay{
+    background-color: rgb(99, 11, 11);
+}
+
+button{
+    background-color: rgba(106, 81, 117, 0.719);
+    color: rgb(211, 134, 45);
+    margin-left: 20px;
+}
